@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
     fd_set read_socket, write_socket, except_socket;
     package data;
     char IP_IPv6[40];
-    int Port_IPv6 = 9000;
+    int Port_IPv6;
 
     if (!argv[1] || !argv[2] || !argv[3]) {
         printf("No parameter.\n");
@@ -108,7 +108,7 @@ int main(int argc, char** argv) {
 
     server_addr_IPv6.sin6_family = AF_INET6;
     server_addr_IPv6.sin6_port = htons(Port_IPv6);
-    inet_pton(AF_INET6, IP_IPv6, server_addr_IPv6.sin6_addr.s6_addr);
+    inet_pton(AF_INET6, IP_IPv6, &server_addr_IPv6.sin6_addr);
 
     // connect the client_addrent socket to server socket
     if (connect(server_socket, (struct sockaddr_in*)&server_addr_IPv6, sizeof(server_addr_IPv6)) != 0) {
