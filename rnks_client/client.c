@@ -98,7 +98,7 @@ int main(int argc, char** argv) {
         exit(EXIT_FAILURE);
     }
 
-    server_socket = socket(AF_INET6, SOCK_STREAM, 0);
+    server_socket = socket(AF_INET6, SOCK_STREAM, IPPROTO_TCP);
     ZeroMemory(&server_addr_IPv6, sizeof(server_addr_IPv6));
     if (server_socket == INVALID_SOCKET) {
         printf("[-] Socket creation failed...\n");
