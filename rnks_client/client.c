@@ -108,8 +108,9 @@ int main(int argc, char** argv) {
 
     server_addr_IPv6.sin6_family = AF_INET6;
     server_addr_IPv6.sin6_port = htons(Port_IPv6);
-    inet_pton(AF_INET6, IP_IPv6, &server_addr_IPv6.sin6_addr);
-
+    server_addr_IPv6.sin6_scope_id = 5;
+    inet_pton(AF_INET6, IP_IPv6, &(server_addr_IPv6.sin6_addr));
+    
     // connect the client_addrent socket to server socket
     if (connect(server_socket, (struct sockaddr_in*)&server_addr_IPv6, sizeof(server_addr_IPv6)) != 0) {
         printf("[-] Connecting failed...\n");
